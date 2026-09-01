@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15
+    container_name: db_container
+    hostname: db
+    domainname: internal.local  # Resolves to db.internal.local
+    networks:
+      - app-network
+    environment:
+      POSTGRES_PASSWORD: secretpassword
+
+  backend-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_container
+    hostname: api
+    domainname: internal.local  # Resolves to api.internal.local
+    networks:
+      - app-network
+    depends_on:
+      - database
+    # Inside this container, you can connect to the DB using:
+    # "db.internal.local" instead of an IP address
+
+networks:
+  app-network:
+    driver: bridge
