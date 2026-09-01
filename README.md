@@ -47,13 +47,26 @@ $ docker inspect <app2-container-id> | grep IP
 ```
 
 
-* ##### Layer4: nginx
+* ##### Layer-4: nginx
 ```lb4
 $ cd lb4
 $ docker build -t nginx-layer4 .
 
 # LB requires to expose for accessing publiclly
 $ docker run -d -p 80:80/tcp --name nginx-l4-proxy nginx-layer4
+
+# Terminal:
+    ## Public check
+        - curl http://localhost:80
+```
+
+* ##### Layer-7: nginx
+```lb7
+$ cd lb7
+$ docker build -t nginx-layer7 .
+
+# LB requires to expose for accessing publiclly
+$ docker run -d -p 80:80/tcp --name nginx-l7-proxy nginx-layer7
 
 # Terminal:
     ## Public check
