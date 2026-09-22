@@ -9,6 +9,9 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose the HTTP port
 EXPOSE 80
+# Expose the TCP port
+EXPOSE 3304
+
 # EXPOSE 12345/tcp
 # EXPOSE 12345/udp
 
